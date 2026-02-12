@@ -1,0 +1,167 @@
+:root {
+  --pink-bg: #FFE9F0;
+  --pink-dark: #FF2F6F;
+  --white: #FFFFFF;
+  --black: #000000;
+  --shadow: 0px 14px 29px rgba(51, 9, 22, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--pink-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  /* Prevent scrolling */
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container for the specific 800x800 design */
+.slide-container {
+  position: relative;
+  width: 800px;
+  height: 800px;
+  background: var(--pink-bg);
+  overflow: hidden;
+  /* Scale down on smaller screens */
+  transform-origin: center center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Common Elements */
+.ellipse-bg {
+  position: absolute;
+  width: 496px;
+  height: 496px;
+  left: calc(50% - 496px/2);
+  top: calc(50% - 496px/2);
+  background: var(--pink-dark);
+  filter: blur(150px);
+  z-index: 0;
+}
+
+.card {
+  position: absolute;
+  width: 624px;
+  height: 552px;
+  left: calc(50% - 624px/2);
+  top: calc(50% - 552px/2);
+  background: var(--white);
+  border-radius: 32px;
+  z-index: 1;
+}
+
+.text-content {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+  font-weight: 700;
+  color: var(--black);
+  /* Positioning varies by slide, handled in JS or specific classes */
+}
+
+.btn {
+  position: absolute;
+  background: var(--pink-dark);
+  box-shadow: var(--shadow), inset 0px -6px 6px #DC2960, inset 0px 6px 6px #FF347B;
+  border-radius: 16px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* .btn-yes styles are handled inline or default .btn */
+
+.btn-no {
+  background: #3E000C;
+  box-shadow: var(--shadow), inset 0px -7px 7px #35000A, inset 0px 7px 7px #45000D;
+}
+
+.photo {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 2;
+  border-radius: 10px;
+  /* Optional rounded corners for photos */
+}
+
+.illu-container {
+  position: absolute;
+  width: 240px;
+  height: 96px;
+  left: calc(50% - 240px/2);
+  top: 88px;
+  z-index: 5;
+}
+
+/* LUV icon removed */
+
+.kiss-icon {
+  position: absolute;
+  width: 240px;
+  height: 40px;
+  left: calc(50% - 240px/2);
+  top: 51px;
+  background: url('/assets/Kiss.svg') no-repeat center;
+  background-size: contain;
+  opacity: 0;
+  pointer-events: none;
+  /* Prevent blocking clicks */
+  transition: opacity 0.5s;
+}
+
+/* Animations */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Specific Adjustments for "Runaway" No button */
+.runaway-btn {
+  transition: top 0.2s, left 0.2s;
+}
